@@ -29,19 +29,20 @@ $routeCollector->setDefaultInvocationStrategy(new RequestResponseArgs());
 
 $app->setBasePath("/ctec3110/lab_01/pets");
 
-$app->get('[/]', function (Request $request, Response $response): Response {
-    $response->getBody()->write(newName($response));
+$app->get('[/]', function (Request $request, Response $response, $origName, $newName): Response {
+    $response->getBody()->write(newName($response, $origName, $newName));
     return $response;
-})->setArgument('name', 'Buster');
+})->setArgument('origName', 'Elsie')->setArgument('newName', 'Buster');
 
-$app->get('/{name}', function (Request $request, Response $response, $name) {
+$app->get('/{name}', function (Request $request, Response $response, $origName, $name) {
     //$response = newName($response);
-    $response->getBody()->write(newName($response, $newName = $name));
+    $response->getBody()->write(newName($response, $origName, $name));
     return $response;
-});
+})->setArgument('origName', 'Elsie');
+
 $app->get('/{origName}/{newName}', function (Request $request, Response $response, $origName, $newName) {
     $response->getBody()->write(newName($response, $newName, $origName));
-    return $response;
+    return $response;       
 });
 
 
@@ -77,7 +78,7 @@ function root($response): Response
  * @param $response
  * @return Response
  */
-function newName($response, string $newName = 'Buster', string $origName = 'Elsie'): string
+function newName($response, string $origName, string $newName): string
 {
     $pet_1_name = '';
     $pet_2_name = '';
