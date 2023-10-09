@@ -29,7 +29,7 @@ $routeCollector->setDefaultInvocationStrategy(new RequestResponseArgs());
 
 $app->setBasePath("/ctec3110/lab_01/pets");
 
-$app->get('/', function (Request $request, Response $response): Response {
+$app->get('[/]', function (Request $request, Response $response): Response {
     $response->getBody()->write(newName($response));
     return $response;
 })->setArgument('name', 'Buster');

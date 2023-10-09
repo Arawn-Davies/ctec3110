@@ -35,16 +35,33 @@ $routeCollector->setDefaultInvocationStrategy(new RequestResponseArgs());
 
 $app->setBasePath("/ctec3110/lab_01/person");
 
+
+// functions need to return a Response type
+/**
+*  path option 1 - no parameters
+*  @param $response
+*  @return Response
+*/
 $app->get('/', function (Request $request, Response $response): Response {
-    $response = NoParams($response);
+    $response->getBody()->write(Generic());
     return $response;
 });
 
+/**
+ * path option 2 - one parameter
+ * @param $name
+ * @return Response
+ */
 $app->get('/{name}', function (Request $request, Response $response, $name): Response {
     $response->getBody()->write(newPerson($name, $DoB = '27 April 2000'));
     return $response;
 });
-
+/**
+ * path option 3 - two parameters
+ * @param $name
+ * @param $DoB
+ * @return Person
+ */
 $app->get('/{name}/{DoB}', function (Request $request, Response $response, $name, $DoB) {
     //$response = newName($response);
     $response->getBody()->write(newPerson($DoB, $name));
@@ -68,21 +85,7 @@ try {
     die("This is not allowed");
 }
 
-
-
-// functions need to return a Response type
-/*
-  path option 1 - no parameters
-  @param $response
-  @return Response
-*/
-function NoParams($response): Response
-{
-    $response->getBody()->write(Generic($response));
-    return $response;
-}
-
-function Generic($response): string
+function Generic(): string
 {
     $People[1] = CreatePerson('Bill', '11 August 1949')->sayHello();
     $People[2] = CreatePerson('Fred', '11 August 1948')->sayHello();
@@ -96,13 +99,6 @@ function Generic($response): string
     return $output_html;
 }
 
-/**
- * path option 2 - one parameter
- * @param $name
- * @return string
- */
-
-
 function newPerson(string $name, string $DoB): string
 {
     $People[1] = CreatePerson($name, $DoB)->sayHello();
@@ -115,12 +111,6 @@ function newPerson(string $name, string $DoB): string
     return $output_html;
 }
 
-/**
- * Generic person creation method - two parameters
- * @param $name
- * @param $DoB
- * @return Person
- */
 function CreatePerson(string $name, string $DoB)
 {
 	$person = new Person();
