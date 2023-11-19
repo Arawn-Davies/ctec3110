@@ -1,0 +1,42 @@
+<?php
+
+declare (strict_types=1);
+
+namespace Sessions;
+
+interface SessionInterface
+{
+    /**
+     * Assigns a session value to storage.  Session key is used to identify the value
+     *
+     * @param $session_key
+     * @param $session_value_to_set
+     * @return mixed
+     */
+    public function setSessionVar($session_key, $session_value_to_set);
+
+    /**
+     * Returns from storage the value associated with the given key
+     *
+     * @param $session_key
+     * @return mixed
+     */
+    public function getSessionVar($session_key);
+
+    /**
+     * Remove the stored value from storage
+     *
+     * @param $session_key
+     * @return mixed
+     */
+    public function unsetSessionVar($session_key);
+
+    /**
+     * Log all relevant activity
+     *
+     * @param $session_logger
+     * @return mixed
+     */
+    public function setLogger($session_logger);
+
+}

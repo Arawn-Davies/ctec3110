@@ -1,0 +1,18 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+    <div id="page-content-div">
+        <h3>{{ page_heading_2 }}</h3>
+        <h4>{{ sid_text }}{{ sid }}</h4>
+        <p>{{ storage_text }}</p>
+        <p>Storage type: {{ server_type }}</p>
+        <p>Username: {{ username }}</p>
+        <p>Password: {{ password }}</p>
+        {#  remove html protection
+        <p>Password: {{ password | raw }}</p>
+        #}
+        <form action="{{ action }}" method="{{ method }}">
+            <input type="submit" value="Retrieve the information just stored >>>">
+        </form>
+        <p class="curr_page"><a href="{{ landing_page }}">Home</a></p>
+    </div>
+{% endblock %}
