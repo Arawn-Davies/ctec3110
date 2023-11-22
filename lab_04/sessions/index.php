@@ -5,4 +5,4 @@
  * @package sessions
  */
 
-include_once '/sessions/bootstrap.php';
+include_once 'sessions/bootstrap.php';
