@@ -81,8 +81,11 @@ try {
     $app->run();
 } catch (Exception $e) {
     // display an error message
+<<<<<<< HEAD
     echo ($e);
     echo ('<br /><br />');
+=======
+>>>>>>> 5166bf7a3b833f0ae6c73436ea615f3c4c629f63
     die("Did you say the magic word???");
 }
 
