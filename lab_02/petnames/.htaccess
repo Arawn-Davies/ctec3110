@@ -1,0 +1,6 @@
+# Redirect to front controller
+RewriteEngine On
+RewriteBase /ctec3110/lab_02/petnames/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
